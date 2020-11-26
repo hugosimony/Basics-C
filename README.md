@@ -1,2 +1,2 @@
 # Basics-C
-Simple Problems in C
+Basic functions in C
