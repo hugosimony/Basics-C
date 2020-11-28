@@ -2,13 +2,11 @@
 
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99 -O0 -g
-ARRAYS = arrays.c
 MATHS = maths.c
 
-all: clean arrays maths
+all: clean maths
 
-arrays :
-	${CC} ${ARRAYS} ${CFLAGS} -o arrays
+maths :
 	${CC} ${MATHS} ${CFLAGS} -o maths
 
 clean :
