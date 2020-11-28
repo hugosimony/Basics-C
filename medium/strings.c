@@ -1,5 +1,5 @@
 /*
- * Some basics functions manipulating arrays
+ * Some basics functions manipulating strings
 */
 
 //*****************************************

@@ -2,6 +2,10 @@
  * Some basics maths functions
 */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 //*****************************************
 // Fibonnaci
 unsigned long fibo(unsigned long n){
@@ -20,7 +24,7 @@ unsigned long fibo(unsigned long n){
 
 //*****************************************
 // Power of two (linear)
-unsigned long power_of_two(unsigned char n){
+unsigned long power_of_two(unsigned long n){
     return (((unsigned long) 1)<<n);
 }
 
@@ -101,3 +105,59 @@ int is_perfect_number(unsigned long n) {
 }
 
 //*****************************************
+// Usage
+
+// Helpeur
+void print_help(){
+    printf("--------- Usage ---------\n");
+    printf(" -> maths fibo x\n");
+    printf(" -> maths 2power x\n");
+    printf(" -> maths facto x\n");
+    printf(" -> maths sqrt x\n");
+    printf(" -> maths digit_count x\n");
+    printf(" -> maths divisor_sum x\n");
+    printf(" -> maths perfect x\n");
+    printf(" -> maths help\n");
+    printf(" (x is an unsigned long)\n");
+    printf("-------------------------\n");
+}
+
+// Main function
+int main(int argc, char *argv[]) {
+    if(argc != 3){
+        print_help();
+        return 0;
+    }
+    char *ptr;
+    long x = strtol(argv[2], &ptr, 10);
+    if(x < 0) x *= -1;
+    if(strcmp(argv[1], "fibo") == 0){
+        printf("Fibonnaci(%lu) = %lu.\n", x, fibo(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "2power") == 0){
+        printf("2^%lu = %lu.\n", x, power_of_two(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "facto") == 0){
+        printf("%lu! = %lu.\n", x, facto(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "sqrt") == 0){
+        printf("Integral Square Root of %lu = %lu.\n", x, isqrt(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "digit_count") == 0){
+        printf("%lu has %u digits.\n", x, digit_count(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "divisor_sum") == 0){
+        printf("The sum of the divisors of %lu is %lu.\n", x, divisor_sum(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "perfect") == 0){
+        printf("%lu is %sa perfect number !\n", x, is_perfect_number(x) == 1 ? "" : "not ");
+        return 1;
+    }
+    return 0;
+}
