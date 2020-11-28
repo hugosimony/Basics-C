@@ -2,6 +2,8 @@
  * Some basics functions manipulating arrays
 */
 
+#include <stddef.h>
+
 //*****************************************
 // Swap
 
@@ -35,7 +37,7 @@ int array_is_sorted(int array[], size_t len)
 }
 
 // With pointers
-int array_is_sorted(int *begin, int *end)
+int array_is_sorted_ptr(int *begin, int *end)
 {
     for(int *p = begin; p < end - 1; p++){
         if(*p > *(p+1))
@@ -179,6 +181,49 @@ void array_select_sort(int array[], size_t len)
         }
         array_swap(array, i, index);
     }
+}
+
+//*****************************************
+// Sorting (quick sort method)
+static void _quick_sort(int *array, size_t begin, size_t end)
+{
+    // Sorted
+    if (begin >= end)
+        return;
+
+    // The pivot is the item at begin index
+    int pivot = array[begin];
+
+    // Where we exchange lower values
+    size_t thres = begin + 1;
+    for (size_t i = thres; i <= end; ++i)
+        if (array[i] < pivot)
+        {
+            // Swap values and update threshold
+            int tmp = array[i];
+            array[i] = array[thres];
+            array[thres] = tmp;
+
+            ++thres;
+        }
+
+    // Place pivot at the right place
+    array[begin] = array[thres];
+    array[thres] = pivot;
+
+    // Sort lower and higher partitions
+    if (thres > 0)
+        _quick_sort(array, begin, thres - 1);
+    _quick_sort(array, thres + 1, end);
+}
+
+void array_quick_sort(int array[], size_t len)
+{
+    // Avoid overflows
+    if (!len)
+        return;
+
+    _quick_sort(array, 0, len - 1);
 }
 
 //*****************************************
