@@ -27,6 +27,32 @@ void clear_string(char s[], size_t len){
 }
 
 //*****************************************
+// Print Christmas Tree
+void print_ctree(unsigned int n){
+    for(unsigned j = 0; j < n-1; ++j) printf(" ");
+    printf("*\n");
+    unsigned c = 1;
+    for(unsigned int i = 1; i < n*2-2; ++i){
+        unsigned int j = c;
+        for(; j < n-1; ++j)
+            printf(" ");
+        for(j = i % 2 == 0 ? 1 : 0; j < (c+1)*2-1; ++j)
+            printf("*");
+        if(i%2==0){
+            printf("*");
+            ++c;
+        } 
+        printf("\n");
+    }
+    for(unsigned int j = 0; j < n-1; ++j) printf(" ");
+    printf("*\n");
+    if(n>3){
+        for(unsigned int j = 0; j < n-1; ++j) printf(" ");
+        printf("*\n");
+    }
+}
+
+//*****************************************
 // Find substring
 int get_index(char str1[], char str2[]){
     int l1 = get_str_size(str1);
