@@ -2,6 +2,10 @@
  * Some basics functions manipulating strings
 */
 
+#include "stddef.h"
+#include "stdio.h"
+#include <err.h>
+
 //*****************************************
 // Length
 size_t len_str(char s[]){
@@ -55,8 +59,8 @@ void print_ctree(unsigned int n){
 //*****************************************
 // Find substring
 int get_index(char str1[], char str2[]){
-    int l1 = get_str_size(str1);
-    int l2 = get_str_size(str2);
+    int l1 = len_str(str1);
+    int l2 = len_str(str2);
     if(l2 > l1)
         return -1;
     int compare = 1;
@@ -161,3 +165,8 @@ void mix(char s[]){
 }
 
 //*****************************************
+
+int main(int argc, char *argv[]) {
+    // Do some stuff
+    // print_ctree(10);
+}

@@ -62,6 +62,19 @@ unsigned char digit_count(unsigned long n){
     return x;
 }
 
+//*****************************************
+// Digit Sum
+unsigned char digit_sum(unsigned long n){
+    if(n == 0)
+        return (unsigned char) 0;
+    unsigned char x = 0;
+    unsigned long y = 1;
+    while(y<=n){
+        x+=n/y;
+        y*=10;
+    }
+    return x;
+}
 
 //*****************************************
 // Divisor Sum -> Perfect Number
@@ -115,6 +128,7 @@ void print_help(){
     printf(" -> maths facto x\n");
     printf(" -> maths sqrt x\n");
     printf(" -> maths digit_count x\n");
+    printf(" -> maths digit_sum x\n");
     printf(" -> maths divisor_sum x\n");
     printf(" -> maths perfect x\n");
     printf(" -> maths help\n");
@@ -149,6 +163,10 @@ int main(int argc, char *argv[]) {
     }
     if(strcmp(argv[1], "digit_count") == 0){
         printf("%lu has %u digits.\n", x, digit_count(x));
+        return 1;
+    }
+    if(strcmp(argv[1], "digit_sum") == 0){
+        printf("The digits sum of %lu is %u.\n", x, digit_sum(x));
         return 1;
     }
     if(strcmp(argv[1], "divisor_sum") == 0){
